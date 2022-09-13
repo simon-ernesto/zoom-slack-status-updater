@@ -24,7 +24,7 @@ app.post('/', async (req, res, next) => {
   const currentEmail = get(req, 'body.payload.object.email')
   const verificationToken = get(req, 'headers.authorization')
 
-  if (currentEmail === 'ernesto@simondata.com'){
+  if (currentEmail === 'ernesto@simondata.com' || currentEmail === 'mike@simondata.com'){
     logger('Received REQUEST', req.body)
   }
   
