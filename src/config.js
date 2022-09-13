@@ -10,4 +10,5 @@ module.exports = {
    */
   ZOOM_IN_MEETING_STATUS: 'Do_Not_Disturb',
   ZOOM_IN_MEETING_STATUS2: 'In_Meeting',
+  ZOOM_IN_MEETING_STATUS3: 'Presenting',
 }
