@@ -129,9 +129,10 @@ module.exports = async (options) => {
     const isInMeeting = presenceStatus === ZOOM_IN_MEETING_STATUS 
     const isInMeeting2 = presenceStatus === ZOOM_IN_MEETING_STATUS2
 
+    const inMeeting = isInMeeting || isInMeeting2
     const status = isInMeeting || isInMeeting2 ? 'meetingStatus' : 'noMeetingStatus'
 
-    logger('STATUS', "presenceStatus="+presenceStatus+";isInMeeting=" + isInMeeting + "; isInMeeting2="+ isInMeeting2+"; status=" + status + "; workspaceToUpdate=" + workspaceToUpdate)
+    logger('STATUS', "inMeeting="+inMeeting+";presenceStatus="+presenceStatus+";isInMeeting=" + isInMeeting + "; isInMeeting2="+ isInMeeting2+"; status=" + status + "; workspaceToUpdate=" + workspaceToUpdate)
 
     return axios.all(
       [
@@ -142,7 +143,7 @@ module.exports = async (options) => {
         }),
         // only change DnD when workspace configured dndNumMinutes
        updateSlackDndStatus(workspaceToUpdate, {
-            snooze: isInMeeting,
+            snooze: inMeeting,
             token: workspaceToUpdate.token,
           }),
       ].filter(Boolean),
