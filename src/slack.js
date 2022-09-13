@@ -128,9 +128,10 @@ module.exports = async (options) => {
   if (!hasConfiguredMail || (hasConfiguredMail && configuredMailsMatch)) {
     const isInMeeting = presenceStatus === ZOOM_IN_MEETING_STATUS 
     const isInMeeting2 = presenceStatus === ZOOM_IN_MEETING_STATUS2
+    const isInMeeting3  = presenceStatus === ZOOM_IN_MEETING_STATUS3
 
-    const inMeeting = isInMeeting || isInMeeting2
-    const status = isInMeeting || isInMeeting2 ? 'meetingStatus' : 'noMeetingStatus'
+    const inMeeting = isInMeeting || isInMeeting2 || isInMeeting3
+    const status = isInMeeting || isInMeeting2 || isInMeeting3 ? 'meetingStatus' : 'noMeetingStatus'
 
     logger('STATUS', "inMeeting="+inMeeting+";presenceStatus="+presenceStatus+";isInMeeting=" + isInMeeting + "; isInMeeting2="+ isInMeeting2+"; status=" + status + "; workspaceToUpdate=" + workspaceToUpdate)
 

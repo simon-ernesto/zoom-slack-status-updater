@@ -19,12 +19,13 @@ app.use(bodyParser.json())
  */
 app.post('/', async (req, res, next) => {
   
-
+  logger('Received REQUEST', req.body)
+  
   const currentPresenceStatus = get(req, 'body.payload.object.presence_status')
   const currentEmail = get(req, 'body.payload.object.email')
   const verificationToken = get(req, 'headers.authorization')
 
-    logger('Received REQUEST', req.body)
+    
 
   
 
