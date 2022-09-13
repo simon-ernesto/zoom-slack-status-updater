@@ -109,7 +109,7 @@ dist
 .tern-port
 
 # configs
-slack-status-config.js
+#slack-status-config.js
 
 # intellij stuff
 .idea
