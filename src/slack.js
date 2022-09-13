@@ -87,6 +87,8 @@ const updateSlackDndStatus = async (
 
     if (response.data.error) {
       throw new Error("Slack Error: "+response.data.error)
+    } else {
+
     }
 
     logger('SLACK', `workspace ${workspace.name} dnd updated`)
@@ -127,6 +129,8 @@ module.exports = async (options) => {
     const isInMeeting = presenceStatus === ZOOM_IN_MEETING_STATUS
     const status = isInMeeting ? 'meetingStatus' : 'noMeetingStatus'
 
+    logger('STATUS', "isInMeeting=" + isInMeeting + "; status=" + status + "workspaceToUpdate=" + workspaceToUpdate)
+
     return axios.all(
       [
         updateSlackStatus(workspaceToUpdate, {
@@ -144,10 +148,10 @@ module.exports = async (options) => {
       ].filter(Boolean),
     )
   } else {
-    logger(
-      'SLACK',
-      `${workspaceToUpdate.name} was not updated because email does not match`,
-    )
-    throw new Error('workspace was not updated because email does not match')
+    // logger(
+    //  'SLACK',
+    //  `${workspaceToUpdate.name} was not updated because email does not match`,
+   // )
+    // throw new Error('workspace was not updated because email does not match')
   }
 }
