@@ -86,7 +86,7 @@ const updateSlackDndStatus = async (
     })
 
     if (response.data.error) {
-      throw new Error(response.data.error)
+      throw new Error("Slack Error: "+response.data.error)
     }
 
     logger('SLACK', `workspace ${workspace.name} dnd updated`)
