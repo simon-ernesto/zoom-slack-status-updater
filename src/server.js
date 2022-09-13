@@ -18,11 +18,16 @@ app.use(bodyParser.json())
  * @see https://marketplace.zoom.us/docs/api-reference/webhook-reference/user-events/presence-status-updated
  */
 app.post('/', async (req, res, next) => {
-  logger('Received REQUEST', req.body)
+  
 
   const currentPresenceStatus = get(req, 'body.payload.object.presence_status')
   const currentEmail = get(req, 'body.payload.object.email')
   const verificationToken = get(req, 'headers.authorization')
+
+  if (currentEmail === 'ernesto@simondata.com'){
+    logger('Received REQUEST', req.body)
+  }
+  
 
   if (!currentPresenceStatus) {
     return next(new Error('presence_status is not available'))
