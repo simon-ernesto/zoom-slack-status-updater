@@ -4,7 +4,7 @@ const qs = require('qs')
 const slackWorkspaces = require('../slack-status-config')
 const logger = require('./logger')
 
-const { ZOOM_IN_MEETING_STATUS } = require('./config')
+const { ZOOM_IN_MEETING_STATUS, ZOOM_IN_MEETING_STATUS2 } = require('./config')
 
 /**
  * Update slack status
@@ -126,10 +126,12 @@ module.exports = async (options) => {
   const configuredMailsMatch = workspaceToUpdate.email === email
 
   if (!hasConfiguredMail || (hasConfiguredMail && configuredMailsMatch)) {
-    const isInMeeting = presenceStatus === ZOOM_IN_MEETING_STATUS
-    const status = isInMeeting ? 'meetingStatus' : 'noMeetingStatus'
+    const isInMeeting = presenceStatus === ZOOM_IN_MEETING_STATUS 
+    const isInMeeting2 = presenceStatus2 === ZOOM_IN_MEETING_STATUS2
 
-    logger('STATUS', "isInMeeting=" + isInMeeting + "; status=" + status + "workspaceToUpdate=" + workspaceToUpdate)
+    const status = isInMeeting || isInMeeting2 ? 'meetingStatus' : 'noMeetingStatus'
+
+    logger('STATUS', "presenceStatus="+presenceStatus+";isInMeeting=" + isInMeeting + "; isInMeeting2="+ isInMeeting2+"; status=" + status + "; workspaceToUpdate=" + workspaceToUpdate)
 
     return axios.all(
       [
