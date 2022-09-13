@@ -10,7 +10,7 @@ module.exports = [
     dndNumMinutes: 60,
     meetingStatus: {
       text: "I'm in a meeting",
-      emoji: ':warning:',
+      emoji: ':zoom:',
     },
     noMeetingStatus: {
       text: '',
