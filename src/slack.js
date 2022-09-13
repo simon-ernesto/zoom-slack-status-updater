@@ -54,7 +54,7 @@ const updateSlackStatus = async (workspace, { token, text, emoji }) => {
  */
 const updateSlackDndStatus = async (
   workspace,
-  { token, numMinutes, snooze },
+  { token, snooze },
 ) => {
   try {
     let config = {}
@@ -64,7 +64,7 @@ const updateSlackDndStatus = async (
         config = {
           url: 'https://slack.com/api/dnd.setSnooze',
           data: qs.stringify({
-            num_minutes: numMinutes,
+            snooze_is_indefinite: true,
           }),
         }
         break
@@ -141,9 +141,7 @@ module.exports = async (options) => {
           emoji: workspaceToUpdate[status].emoji,
         }),
         // only change DnD when workspace configured dndNumMinutes
-        workspaceToUpdate.dndNumMinutes > 0 &&
-          updateSlackDndStatus(workspaceToUpdate, {
-            numMinutes: workspaceToUpdate.dndNumMinutes,
+       updateSlackDndStatus(workspaceToUpdate, {
             snooze: isInMeeting,
             token: workspaceToUpdate.token,
           }),
