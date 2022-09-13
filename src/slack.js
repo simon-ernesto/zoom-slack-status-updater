@@ -4,7 +4,7 @@ const qs = require('qs')
 const slackWorkspaces = require('../slack-status-config')
 const logger = require('./logger')
 
-const { ZOOM_IN_MEETING_STATUS, ZOOM_IN_MEETING_STATUS2 } = require('./config')
+const { ZOOM_IN_MEETING_STATUS, ZOOM_IN_MEETING_STATUS2, ZOOM_IN_MEETING_STATUS3 } = require('./config')
 
 /**
  * Update slack status
