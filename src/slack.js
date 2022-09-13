@@ -64,7 +64,7 @@ const updateSlackDndStatus = async (
         config = {
           url: 'https://slack.com/api/dnd.setSnooze',
           data: qs.stringify({
-            snooze_is_indefinite: true,
+            is_indefinite: true,
           }),
         }
         break
