@@ -18,7 +18,7 @@ app.use(bodyParser.json())
  * @see https://marketplace.zoom.us/docs/api-reference/webhook-reference/user-events/presence-status-updated
  */
 app.post('/', async (req, res, next) => {
-  logger('REQUEST', req.body)
+  logger('Received REQUEST', req.body)
 
   const currentPresenceStatus = get(req, 'body.payload.object.presence_status')
   const currentEmail = get(req, 'body.payload.object.email')
