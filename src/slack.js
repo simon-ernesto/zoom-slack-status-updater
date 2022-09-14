@@ -31,7 +31,6 @@ const updateSlackStatus = async (workspace, { token, text, emoji, email_address 
 
     console.log("email:" + email_address)
     console.dir("User Response - user:\n" + user_response.user)
-    console.dir("User Response - id :\n" + user_response.user.id)
     console.dir("User Response - id direct:\n" + user_response.id)
     console.log("User Response - log:\n" + user_response)
 
