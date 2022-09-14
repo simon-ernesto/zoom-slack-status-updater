@@ -14,8 +14,23 @@ const { ZOOM_IN_MEETING_STATUS, ZOOM_IN_MEETING_STATUS2, ZOOM_IN_MEETING_STATUS3
  *
  * @see https://api.slack.com/docs/presence-and-status
  */
-const updateSlackStatus = async (workspace, { token, text, emoji }) => {
+const updateSlackStatus = async (workspace, { token, text, emoji, email_address }) => {
   try {
+
+    const user_response = await axios.post(
+      'https://slack.com/api/users.lookupByEmail',
+      {
+        email: email_address,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+
+    logger('SLACK REP', user_response.user.id)
+
     const response = await axios.post(
       'https://slack.com/api/users.profile.set',
       {
@@ -141,6 +156,7 @@ module.exports = async (options) => {
           token: workspaceToUpdate.token,
           text: workspaceToUpdate[status].text,
           emoji: workspaceToUpdate[status].emoji,
+          email_address: email,
         }),
         // only change DnD when workspace configured dndNumMinutes
        updateSlackDndStatus(workspaceToUpdate, {
