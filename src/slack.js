@@ -30,9 +30,9 @@ const updateSlackStatus = async (workspace, { token, text, emoji, email_address 
     )
 
     console.log("email:" + email_address)
-    console.dir("User Response - user:\n" + user_response.user)
-    console.dir("User Response - id direct:\n" + user_response.id)
-    console.log("User Response - log:\n" + user_response)
+    console.dir("User Response - user:\n" + user_response.data.user)
+    console.dir("User Response - id direct:\n" + user_response.data.user.id)
+    console.log("User Response - log:\n" + user_response.data)
 
 
     const response = await axios.post(
