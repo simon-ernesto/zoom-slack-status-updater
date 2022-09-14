@@ -17,7 +17,7 @@ const { ZOOM_IN_MEETING_STATUS, ZOOM_IN_MEETING_STATUS2, ZOOM_IN_MEETING_STATUS3
 const updateSlackStatus = async (workspace, { token, text, emoji, email_address }) => {
   try {
 
-    const user_response = await axios.post(
+    const user_response = await axios.get(
       'https://slack.com/api/users.lookupByEmail',
       {
         email: email_address,
@@ -29,9 +29,10 @@ const updateSlackStatus = async (workspace, { token, text, emoji, email_address 
       },
     )
 
-    console.dir(user_response)
+    console.log("email:" + email_address)
+    console.dir("User Response:\n" + user_response)
 
-    logger('SLACK REP', user_response.user)
+
 
     const response = await axios.post(
       'https://slack.com/api/users.profile.set',
