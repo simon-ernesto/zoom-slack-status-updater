@@ -31,13 +31,6 @@ const updateSlackStatus = async (workspace, { token, text, emoji, email_address 
       },
     )
 
-    
-    console.dir("User Response - log:\n" + user_response.data)
-    console.dir("User Response - user:\n" + user_response.data.user)
-    console.dir("User Response - id direct:\n" + user_response.data.user.id)
-    
-
-
     const response = await axios.post(
       'https://slack.com/api/users.profile.set',
       {
